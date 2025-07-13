@@ -1,0 +1,159 @@
+[language-server.codebook-ls]
+command = "codebook-lsp"
+args = ["serve"]
+
+# Example use in markdown:
+[[language]]
+name = "markdown"
+language-servers = ["codebook"]
+
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.harper-ls.config.harper-ls]
+diagnosticSeverity = "warning"
+
+[language-server.sql-language-server]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+
+[language-server.tailwindcss-ls.config.tailwindCSS]
+classFunctions = ["cva", "cn", "tw", "clsx"]
+
+[[language]]
+name = "sql"
+language-servers = [ "sql-language-server" ]
+
+[language-server.eslint]
+args = ["--stdio"]
+command = "vscode-eslint-language-server"
+
+[language-server.eslint.config]
+format = false
+# nodePath = "/home/mast/.bun/bin/eslint"
+nodePath = ""
+onIgnoredFiles = "off"
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint.config.codeAction]
+[language-server.eslint.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.eslint.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.eslint.config.codeActionOnSave]
+enable = true
+mode = "all"
+
+[language-server.eslint.config.workingDirectory]
+mode = "location"
+
+[language-server.eslint.config.experimental]
+useFlatConfig = false
+
+# nodePath = "/home/mast/.bun/bin/eslint"
+# onIgnoredFiles = "off"
+# quiet = false
+# rulesCustomizations = []
+# run = "onType"
+# useESLintClass = false
+# experimental = { useFlatConfig = false }
+# validate = "on"
+# codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = true }, applyOnSave = { enable = true, types = {} } }
+# codeActionOnSave = { mode = "all" }
+# problems = { shortenToSingleLine = false }
+# workingDirectory = { mode = "auto" }
+# bin = "eslint"
+
+# codeActions = { enable = true, applyOnSave = { enable = true, types = {} }, disableRuleComment = { enable = true, location = "separateLine" } } # diagnostics = { enable = true, reportUnusedDisableDirectives = false, runOn = "type" }
+
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[language-server.typescript-language-server.config.javascript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[[language]]
+name = "typescript"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
+language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+
+[[language]]
+name = "javascript"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
+language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+
+[[language]]
+name = "tsx"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
+language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+
+[[language]]
+name = "jsx"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
+language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+# language-servers = [{ name = "eslint" , except-features = [ "format" ] }, "typescript-language-server", "tailwindcss-ls"]
+
+[[language]]
+name = "html"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "html"]}
+language-servers = ["vscode-html-language-server", "tailwindcss-ls", "harper-ls", "codebook-ls"]
+file-types = ["razor"]
+
+[[language]]
+name = "css"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "css"]}
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls", "harper-ls", "codebook-ls"]
+
+[[language]]
+name = "scss"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "scss"]}
+
+[[language]]
+name = "svelte"
+language-servers = [ "svelteserver", "tailwindcss-ls" ]
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[language-server.godot]
+command = "nc" 
+args = [ "127.0.0.1", "6005"]
+
+[[language]]
+name = "gdscript"
+language-servers = [ "godot" ]
