@@ -6,6 +6,7 @@ j = "normal_mode"
 [keys.insert]
 C-p = "paste_before"
 C-s = ":write"
+C-i = "completion"
 
 [keys.normal]
 C-d = ["page_cursor_half_down", "align_view_center"] 
