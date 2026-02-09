@@ -96,32 +96,53 @@ includeInlayVariableTypeHints = true
 name = "typescript"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
-language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+language-servers = [
+    "typescript-language-server",
+    "harper-ls",
+    # "codebook-ls"
+  ]
 
 [[language]]
 name = "javascript"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
-language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+language-servers = [
+    "typescript-language-server",
+    "harper-ls",
+    # "codebook-ls"
+  ]
 
 [[language]]
 name = "tsx"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
-language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+language-servers = [
+    "typescript-language-server",
+    "harper-ls",
+    # "codebook-ls"
+  ]
 
 [[language]]
 name = "jsx"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript", "--config ./.prettierrc", "--ignore-path ./.prettierignore"]}
-language-servers = ["typescript-language-server", "harper-ls", "codebook-ls"]
+language-servers = [
+    "typescript-language-server",
+    "harper-ls",
+    # "codebook-ls"
+  ]
 # language-servers = [{ name = "eslint" , except-features = [ "format" ] }, "typescript-language-server", "tailwindcss-ls"]
 
 [[language]]
 name = "html"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "html"]}
-language-servers = ["vscode-html-language-server", "tailwindcss-ls", "harper-ls", "codebook-ls"]
+language-servers = [
+    "vscode-html-language-server",
+    "tailwindcss-ls",
+    "harper-ls",
+    # "codebook-ls"
+  ]
 file-types = ["razor"]
 
 [[language]]
@@ -157,3 +178,11 @@ args = [ "127.0.0.1", "6005"]
 [[language]]
 name = "gdscript"
 language-servers = [ "godot" ]
+
+[[language]]
+name = "typst"
+formatter = { command = "typstyle" }
+
+[[language]]
+name = "verilog"
+formatter = { command = "verible-verilog-format", args = ["-"] }

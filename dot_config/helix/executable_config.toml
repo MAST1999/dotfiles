@@ -15,17 +15,24 @@ C-n = ["scroll_down", "move_visual_line_down"]
 C-p = ["scroll_up", "move_visual_line_up"]
 X = ["extend_line_above"]
 "F6" = "@:sh pandoc --resource-path <C-r>%<C-w> --self-contained --metadata title='Preview' <C-r>% -o /tmp/md-preview.html && handlr open /tmp/md-preview.html<ret>"
+# Camel Case to Snake Case
+"(" = "@s[A-Z]<ret>~i_<esc>,<A-o><A-;>"
+")" = "@s_<ret>d~<esc>,<A-o><A-;>"
 
 [keys.normal.space]
-f = "file_picker_in_current_directory"
 F = "file_picker"
-c = "file_picker_in_current_buffer_directory"
+f = "file_picker_in_current_directory"
+o = "file_picker_in_current_buffer_directory"
+e = "file_explorer_in_current_directory"
+E = "file_explorer_in_current_buffer_directory"
 i = ":toggle lsp.display-inlay-hints"
 
 [keys.normal.backspace]
 r = ":lsp-restart"
+f = ":toggle-option auto-format"
 
 [editor]
+rainbow-brackets = true
 line-number = "relative"
 bufferline = "always"
 shell = ["fish", "-c"]
@@ -36,10 +43,12 @@ popup-border="all"
 cursorcolumn = true
 cursorline = true
 end-of-line-diagnostics = "hint"
-preview-completion-insert = false
+preview-completion-insert = true
+completion-replace = true
 
 [editor.lsp]
 display-messages = true
+auto-signature-help = false
 
 [editor.statusline]
 left = ["mode", "separator", "version-control", "spinner", "read-only-indicator", "file-modification-indicator"]
