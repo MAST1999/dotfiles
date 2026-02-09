@@ -1,0 +1,165 @@
+#!/bin/bash
+# omo-toggle - Toggle OpenCode configuration between giatec and personal
+
+# Configuration
+CONFIG_DIR="/home/mast/.config/opencode"
+ACTIVE_CONFIG="$CONFIG_DIR/oh-my-opencode.json"
+GIATEC_CONFIG="$CONFIG_DIR/oh-my-opencode-giatec.json"
+PERSONAL_CONFIG="$CONFIG_DIR/oh-my-opencode-personal.json"
+
+# Determine which configuration is currently active
+determine_current_config() {
+    if [ -L "$ACTIVE_CONFIG" ]; then
+        # It's a symlink, read the target
+        local target=$(readlink "$ACTIVE_CONFIG")
+        local target_basename=$(basename "$target")
+
+        case "$target_basename" in
+            oh-my-opencode-giatec.json)
+                echo "giatec"
+                return 0
+                ;;
+            oh-my-opencode-personal.json)
+                echo "personal"
+                return 0
+                ;;
+            *)
+                echo "unknown"
+                return 1
+                ;;
+        esac
+    elif [ -f "$ACTIVE_CONFIG" ]; then
+        # It's a regular file, compare with config files
+        if cmp -s "$ACTIVE_CONFIG" "$GIATEC_CONFIG"; then
+            echo "giatec"
+            return 0
+        elif cmp -s "$ACTIVE_CONFIG" "$PERSONAL_CONFIG"; then
+            echo "personal"
+            return 0
+        else
+            echo "unknown"
+            return 1
+        fi
+    else
+        echo "unknown"
+        return 1
+    fi
+}
+
+# Set the configuration to a specific target
+set_config() {
+    local target_config="$1"
+
+    # Determine target file path
+    local target_file
+    case "$target_config" in
+        giatec)
+            target_file="$GIATEC_CONFIG"
+            ;;
+        personal)
+            target_file="$PERSONAL_CONFIG"
+            ;;
+        *)
+            echo "Error: Invalid configuration '$target_config'. Must be 'giatec' or 'personal'" >&2
+            return 1
+            ;;
+    esac
+
+    # Validate the target file exists
+    if [ ! -f "$target_file" ]; then
+        echo "Error: Configuration file not found: $target_file" >&2
+        return 1
+    fi
+
+    # Remove existing config (file or symlink)
+    rm -f "$ACTIVE_CONFIG"
+
+    # Create new symlink
+    if ln -s "$target_file" "$ACTIVE_CONFIG"; then
+        echo "Activated: $target_file"
+        return 0
+    else
+        echo "Error: Failed to create symlink" >&2
+        return 1
+    fi
+}
+
+# Toggle to the other configuration
+toggle_config() {
+    local current=$(determine_current_config)
+
+    case "$current" in
+        giatec)
+            set_config "personal"
+            ;;
+        personal)
+            set_config "giatec"
+            ;;
+        *)
+            # Unknown state, default to giatec
+            set_config "giatec"
+            ;;
+    esac
+}
+
+# Show current status
+show_status() {
+    local current=$(determine_current_config)
+
+    case "$current" in
+        giatec)
+            echo "Current: $GIATEC_CONFIG"
+            ;;
+        personal)
+            echo "Current: $PERSONAL_CONFIG"
+            ;;
+        unknown)
+            echo "Current: $ACTIVE_CONFIG (regular file or unknown state)"
+            ;;
+    esac
+}
+
+# Print usage information
+usage() {
+    cat << EOF
+Usage: omo-toggle [--status] [--set giatec|personal]
+
+Options:
+  (no args)    Toggle between giatec and personal configurations
+  --status     Show which configuration is currently active
+  --set CONFIG Set specific configuration (giatec or personal)
+  --help       Show this help message
+EOF
+}
+
+# Main function
+main() {
+    case "$1" in
+        "")
+            toggle_config
+            ;;
+        --status)
+            show_status
+            ;;
+        --set)
+            if [ -z "$2" ]; then
+                echo "Error: --set requires a configuration argument (giatec or personal)" >&2
+                usage >&2
+                exit 1
+            fi
+            set_config "$2"
+            ;;
+        --help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Error: Unknown command: $1" >&2
+            usage >&2
+            exit 1
+            ;;
+    esac
+}
+
+# Run main with all arguments
+main "$@"

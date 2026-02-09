@@ -1,0 +1,41 @@
+{
+	"plugin": [
+		"oh-my-opencode@latest"
+	],
+	"$schema": "https://opencode.ai/config.json",
+	"provider": {},
+	"mcp": {
+		"atlassian": {
+			"type": "local",
+			"command": [
+				"bun",
+				"--bun",
+				"x",
+				"mcp-remote@0.1.13",
+				"https://mcp.atlassian.com/v1/sse"
+			],
+			"enabled": false
+		},
+		"gitlab": {
+			"type": "local",
+			"command": [
+				"bun",
+				"x",
+				"mcp-remote@latest",
+				"https://gitlab.com/api/v4/mcp"
+			],
+			"enabled": false
+		},
+		"figma": {
+			"type": "local",
+			"command": [
+				"bun",
+				"x",
+				"figma-developer-mcp",
+				"--figma-api-key={env:FIGMA_TOKEN}",
+				"--stdio"
+			],
+			"enabled": false
+		}
+	}
+}

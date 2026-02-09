@@ -1,0 +1,89 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "prometheus": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "hephaestus": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "momus": {
+      "model": "anthropic/claude-opus-4-6"
+    },
+    "librarian": {
+      "model": "anthropic/claude-sonnet-4-5"
+    },
+    "oracle": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "anthropic/claude-opus-4-6"
+    },
+    "document-writer": {
+      "model": "anthropic/claude-sonnet-4-5"
+    },
+    "multimodal-looker": {
+      "model": "anthropic/claude-haiku-4-5"
+    },
+    "explore": {
+      "model": "anthropic/claude-haiku-4-5"
+    },
+    "metis": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "atlas": {
+      "model": "anthropic/claude-sonnet-4-5"
+    },
+    "sisyphus-junior": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "build": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "plan": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "ultrabrain": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "artistry": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "quick": {
+      "model": "anthropic/claude-haiku-4-5"
+    },
+    "unspecified-low": {
+      "model": "anthropic/claude-sonnet-4-5"
+    },
+    "unspecified-high": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    },
+    "writing": {
+      "model": "anthropic/claude-sonnet-4-5"
+    },
+    "deep": {
+      "model": "anthropic/claude-opus-4-6",
+      "variant": "max"
+    }
+  }
+}
